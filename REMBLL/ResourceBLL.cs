@@ -20,6 +20,17 @@ namespace REMBLL
         }
 
         /// <summary>
+        /// 根据资源ID获取资源目录
+        /// </summary>
+        /// <param name="RID">资源ID</param>
+        /// <returns></returns>
+        public List<Resource> GetResourceByID(string RID)
+        {
+            ResourceDAL resourceDAL = new ResourceDAL();
+            return resourceDAL.GetResourceByID(RID);
+        }
+
+        /// <summary>
         /// 新增资源目录
         /// </summary>
         /// <param name="resource">资源目录对象</param>
@@ -28,9 +39,9 @@ namespace REMBLL
         public void CreateResource(Resource resource)
         {
             ///获取当前时间
-            DateTime dt = NewData.dt;
+            DateTime dt = NewData.NewDate();
             //获取新的GUID
-            string nid = NewData.nid;
+            string nid = NewData.NewGuid();
             ResourceDAL resourceDAL = new ResourceDAL();
             resourceDAL.CreateResource(resource,dt,nid);
         }
@@ -43,7 +54,7 @@ namespace REMBLL
         public void PutResourceByID(Resource resource)
         {
             ///获取当前时间
-            DateTime dt = NewData.dt;
+            DateTime dt = NewData.NewDate();
             ResourceDAL resourceDAL = new ResourceDAL();
             resourceDAL.PutResourceByID(resource, dt);
         }
