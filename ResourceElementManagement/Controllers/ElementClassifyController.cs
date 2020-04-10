@@ -18,10 +18,60 @@ namespace ResourceElementManagement.Controllers
         /// 根据资源ID获取要素分类
         /// </summary>
         [HttpPost]
-        public List<ElementClassify> GetAllElementClassifyByRID(string RID)
+        public List<ElementClassify> GetElementClassifyByRID(string RID)
         {
             ElementClassifyBLL elementClassifyBLL = new ElementClassifyBLL();
-            return elementClassifyBLL.GetAllByResourceID(RID);
+            return elementClassifyBLL.GetElementClassifyByRID(RID);
+        }
+
+        /// <summary>
+        /// 根据要素ID获取要素分类
+        /// </summary>
+        /// <param name="CID">分类ID</param>
+        /// <returns></returns>
+        [HttpPost]
+        public List<ElementClassify> GetElementClassifyByID(string CID)
+        {
+            ElementClassifyBLL elementClassifyBLL = new ElementClassifyBLL();
+            return elementClassifyBLL.GetElementClassifyByID(CID);
+        }
+
+        /// <summary>
+        /// 新增要素分类
+        /// </summary>
+        /// <param name="elementClassify">要素分类对象</param>
+        /// <param name="dt">最后修改时间</param>
+        /// <param name="nid">新GUID</param>
+        [HttpPost]
+        public void CreateElementClassify([FromBody]ElementClassify elementClassify)
+        {
+           
+            ElementClassifyBLL elementClassifyBLL = new ElementClassifyBLL();
+            elementClassifyBLL.CreateElementClassify(elementClassify);
+        }
+
+        /// <summary>
+        /// 根据ID修改要素分类
+        /// </summary>
+        /// <param name="elementClassify">要素分类对象</param>
+        /// <param name="dt">最后修改时间</param>
+        [HttpPut]
+        public void PutElementClassifyByID([FromBody]ElementClassify elementClassify)
+        {
+            
+            ElementClassifyBLL elementClassifyBLL = new ElementClassifyBLL();
+            elementClassifyBLL.PutElementClassifyByID(elementClassify);
+        }
+
+        /// <summary>
+        /// 根据ID删除要素分类
+        /// </summary>
+        /// <param name="CID">分类ID</param>
+        [HttpDelete]
+        public void DeleteElementClassifyByID(string CID)
+        {
+            ElementClassifyBLL elementClassifyBLL = new ElementClassifyBLL();
+            elementClassifyBLL.DeleteElementClassifyByID(CID);
         }
     }
 }

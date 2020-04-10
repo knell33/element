@@ -31,6 +31,17 @@ namespace REMBLL
         }
 
         /// <summary>
+        /// 根据资源ID获取资源类型
+        /// </summary>
+        /// <param name="RID"></param>
+        /// <returns></returns>
+        public List<Resource> GetTypeByRID(string RID)
+        {
+            ResourceDAL resourceDAL = new ResourceDAL();
+            return resourceDAL.GetTypeByRID(RID);
+        }
+
+        /// <summary>
         /// 新增资源目录
         /// </summary>
         /// <param name="resource">资源目录对象</param>
