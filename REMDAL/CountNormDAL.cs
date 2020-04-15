@@ -19,7 +19,7 @@ namespace REMDAL
         public List<CountNorm> GetAllCountNormByRID(string RID)
         {
             string sql = @"select   指标定义ID ID,
-                                    指标名称 Name,
+                                    指标名称 NormName,
                                     计算类型 CalculateType,
                                     运算符 Operator,
                                     运算值 Ovalue,
@@ -81,7 +81,7 @@ namespace REMDAL
             OracleParameter[] oracleParameters =
             {
                     new OracleParameter(":指标定义id",OracleDbType.Varchar2,nid,ParameterDirection.Input),
-                    new OracleParameter(":指标名称",OracleDbType.Varchar2,countNorm.Name,ParameterDirection.Input),
+                    new OracleParameter(":指标名称",OracleDbType.Varchar2,countNorm.NormName,ParameterDirection.Input),
                     new OracleParameter(":计算类型",OracleDbType.Varchar2,countNorm.CalculateType,ParameterDirection.Input),
                     new OracleParameter(":运算符",OracleDbType.Varchar2,countNorm.Operator,ParameterDirection.Input),
                     new OracleParameter(":运算值",OracleDbType.Varchar2, countNorm.Ovalue,ParameterDirection.Input),
@@ -117,7 +117,7 @@ namespace REMDAL
                                 where 指标定义ID=:指标定义ID";
             OracleParameter[] oracleParameters =
             {
-                    new OracleParameter(":指标名称",OracleDbType.Varchar2,countNorm.Name==null?"":countNorm.Name,ParameterDirection.Input),
+                    new OracleParameter(":指标名称",OracleDbType.Varchar2,countNorm.NormName==null?"":countNorm.NormName,ParameterDirection.Input),
                     new OracleParameter(":计算类型",OracleDbType.Varchar2,countNorm.CalculateType==null?"":countNorm.CalculateType,ParameterDirection.Input),
                     new OracleParameter(":运算符",OracleDbType.Varchar2,countNorm.Operator==null?"":countNorm.Operator,ParameterDirection.Input),
                     new OracleParameter(":运算值",OracleDbType.Varchar2, countNorm.Ovalue==null?"":countNorm.Ovalue,ParameterDirection.Input),
