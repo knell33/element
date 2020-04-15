@@ -17,7 +17,7 @@ namespace REMModel
         /// <summary>
         /// 指标名称
         /// </summary>
-        public string Name { get; set; }
+        public string NormName { get; set; }
 
         /// <summary>
         /// 计算类型
