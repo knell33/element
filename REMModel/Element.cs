@@ -53,12 +53,12 @@ namespace REMModel
         /// <summary>
         /// 长度
         /// </summary>
-        public int Length { get; set; }
+        public long Length { get; set; }
 
         /// <summary>
         /// 精度
         /// </summary>
-        public int Precision { get; set; }
+        public long Precision { get; set; }
 
         /// <summary>
         /// 默认值
@@ -83,7 +83,7 @@ namespace REMModel
         /// <summary>
         /// 外部查找SQL
         /// </summary>
-        public string WCSQL { get; set; }
+        /*public Clob WCSQL { get; set; }*/
 
         /// <summary>
         /// 序号
