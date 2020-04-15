@@ -38,6 +38,18 @@ namespace ResourceElementManagement.Controllers
         }
 
         /// <summary>
+        /// 根据资源ID获取资源类型
+        /// </summary>
+        /// <param name="RID"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public List<Resource> GetTypeByRID(string RID)
+        {
+            ResourceBLL resourceBLL = new ResourceBLL();
+            return resourceBLL.GetTypeByRID(RID);
+        }
+
+        /// <summary>
         /// 新增资源目录
         /// </summary>
         /// <param name="resource">资源目录JSON对象</param>

@@ -14,10 +14,60 @@ namespace REMBLL
         /// </summary>
         /// <param name="RID"></param>
         /// <returns></returns>
-        public List<Element> GetAllByResourceID(string RID)
+        public List<Element> GetAllElementByRID(string RID)
         {
             ElementDAL elementDAL = new ElementDAL();
-            return elementDAL.GetAllByResourceID(RID);
+            return elementDAL.GetAllElementByRID(RID);
+        }
+
+        /// <summary>
+        /// 根据要素ID获取要素目录
+        /// </summary>
+        /// <param name="RID">要素ID</param>
+        /// <returns></returns>
+        public List<Element> GetAllElementByEID(string EID)
+        {
+            ElementDAL elementDAL = new ElementDAL();
+            return elementDAL.GetAllElementByEID(EID);
+        }
+
+        /// <summary>
+        /// 新增要素目录
+        /// </summary>
+        /// <param name="element">要素目录对象</param>
+        /// <param name="dt">最后修改时间</param>
+        /// <param name="nid">新GUID</param>
+        public void CreateElement(Element element)
+        {
+            ///获取当前时间
+            DateTime dt = NewData.NewDate();
+            //获取新的GUID
+            string nid = NewData.NewGuid();
+            ElementDAL elementDAL = new ElementDAL();
+            elementDAL.CreateElement(element, dt, nid);
+        }
+
+        /// <summary>
+        /// 根据ID修改要素目录
+        /// </summary>
+        /// <param name="element">要素目录对象</param>
+        /// <param name="dt">最后修改时间</param>
+        public void PutElementByID(Element element)
+        {
+            ///获取当前时间
+            DateTime dt = NewData.NewDate();
+            ElementDAL elementDAL = new ElementDAL();
+            elementDAL.PutElementByID(element, dt);
+        }
+
+        /// <summary>
+        /// 根据ID删除要素目录
+        /// </summary>
+        /// <param name="EID">要素ID</param>
+        public void DeleteElementByID(string EID)
+        {
+            ElementDAL elementDAL = new ElementDAL();
+            elementDAL.DeleteElementByID(EID);
         }
 
         /// <summary>
