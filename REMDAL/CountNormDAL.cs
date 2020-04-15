@@ -19,7 +19,7 @@ namespace REMDAL
         public List<CountNorm> GetAllCountNormByRID(string RID)
         {
             string sql = @"select   指标定义ID ID,
-                                    指标名称 Name,
+                                    指标名称 NormName,
                                     计算类型 CalculateType,
                                     运算符 Operator,
                                     运算值 Ovalue,
@@ -47,7 +47,7 @@ namespace REMDAL
         public List<CountNorm> GetAllCountNormByID(string ID)
         {
             string sql = @"select   指标定义ID ID,
-                                    指标名称 Name,
+                                    指标名称 NormName,
                                     计算类型 CalculateType,
                                     运算符 Operator,
                                     运算值 Ovalue,
@@ -81,13 +81,13 @@ namespace REMDAL
             OracleParameter[] oracleParameters =
             {
                     new OracleParameter(":指标定义id",OracleDbType.Varchar2,nid,ParameterDirection.Input),
-                    new OracleParameter(":指标名称",OracleDbType.Varchar2,countNorm.Name,ParameterDirection.Input),
+                    new OracleParameter(":指标名称",OracleDbType.Varchar2,countNorm.NormName,ParameterDirection.Input),
                     new OracleParameter(":计算类型",OracleDbType.Varchar2,countNorm.CalculateType,ParameterDirection.Input),
                     new OracleParameter(":运算符",OracleDbType.Varchar2,countNorm.Operator,ParameterDirection.Input),
                     new OracleParameter(":运算值",OracleDbType.Varchar2, countNorm.Ovalue,ParameterDirection.Input),
-                    new OracleParameter(":关联类型",OracleDbType.Varchar2, countNorm.AssociationType,ParameterDirection.Input),
-                    new OracleParameter(":关联id",OracleDbType.Varchar2,countNorm.GLID,ParameterDirection.Input),
-                    new OracleParameter(":备注",OracleDbType.Varchar2,countNorm.Note,ParameterDirection.Input),
+                    new OracleParameter(":关联类型",OracleDbType.Varchar2, countNorm.AssociationType==null?"":countNorm.AssociationType,ParameterDirection.Input),
+                    new OracleParameter(":关联id",OracleDbType.Varchar2,countNorm.GLID==null?"":countNorm.GLID,ParameterDirection.Input),
+                    new OracleParameter(":备注",OracleDbType.Varchar2,countNorm.Note==null?"":countNorm.Note,ParameterDirection.Input),
                     new OracleParameter(":最后修改人",OracleDbType.Varchar2,countNorm.LastModify,ParameterDirection.Input),
                     new OracleParameter(":最后修改时间",OracleDbType.Date,dt,ParameterDirection.Input),
                     new OracleParameter(":资源id",OracleDbType.Varchar2,countNorm.RID==null?"":countNorm.RID,ParameterDirection.Input),
@@ -117,7 +117,7 @@ namespace REMDAL
                                 where 指标定义ID=:指标定义ID";
             OracleParameter[] oracleParameters =
             {
-                    new OracleParameter(":指标名称",OracleDbType.Varchar2,countNorm.Name==null?"":countNorm.Name,ParameterDirection.Input),
+                    new OracleParameter(":指标名称",OracleDbType.Varchar2,countNorm.NormName==null?"":countNorm.NormName,ParameterDirection.Input),
                     new OracleParameter(":计算类型",OracleDbType.Varchar2,countNorm.CalculateType==null?"":countNorm.CalculateType,ParameterDirection.Input),
                     new OracleParameter(":运算符",OracleDbType.Varchar2,countNorm.Operator==null?"":countNorm.Operator,ParameterDirection.Input),
                     new OracleParameter(":运算值",OracleDbType.Varchar2, countNorm.Ovalue==null?"":countNorm.Ovalue,ParameterDirection.Input),
