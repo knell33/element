@@ -16,7 +16,7 @@ namespace REMDAL
         /// </summary>
         /// <param name="RID"></param>
         /// <returns></returns>
-        public List<ElementClassify> GetElementClassifyByRID(string RID)
+        public List<ElementClassify> GetAllElementClassifyByRID(string RID)
         {
             string sql = @"select   资源分类ID ID,
                                     资源ID RID,

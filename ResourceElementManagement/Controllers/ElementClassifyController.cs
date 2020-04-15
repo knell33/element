@@ -18,10 +18,10 @@ namespace ResourceElementManagement.Controllers
         /// 根据资源ID获取要素分类
         /// </summary>
         [HttpPost]
-        public List<ElementClassify> GetElementClassifyByRID(string RID)
+        public List<ElementClassify> GetAllElementClassifyByRID(string RID)
         {
             ElementClassifyBLL elementClassifyBLL = new ElementClassifyBLL();
-            return elementClassifyBLL.GetElementClassifyByRID(RID);
+            return elementClassifyBLL.GetAllElementClassifyByRID(RID);
         }
 
         /// <summary>

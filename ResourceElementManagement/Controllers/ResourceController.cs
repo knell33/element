@@ -81,17 +81,5 @@ namespace ResourceElementManagement.Controllers
             ResourceBLL resourceBLL = new ResourceBLL();
             resourceBLL.DeleteResourceByID(ResourceID);
         }
-
-        /// <summary>
-        /// 根据资源ID获取资源类型
-        /// </summary>
-        /// <param name="RID"></param>
-        /// <returns></returns>
-        [HttpPost]
-        public List<Resource> GetTypeByRID(string RID)
-        {
-            ResourceBLL resourceBLL = new ResourceBLL();
-            return resourceBLL.GetTypeByRID(RID);
-        }
     }
 }

@@ -16,7 +16,7 @@ namespace REMDAL
         /// </summary>
         /// <param name="RID"></param>
         /// <returns></returns>
-        public List<Element> GetAllByResourceID(string RID)
+        public List<Element> GetAllElementByResourceID(string RID)
         {
             string sql = @"select   a.要素id EID,
                                     a.资源id RID,

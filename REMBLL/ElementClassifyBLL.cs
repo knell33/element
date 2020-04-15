@@ -14,10 +14,10 @@ namespace REMBLL
         /// </summary>
         /// <param name="RID">资源ID</param>
         /// <returns></returns>
-        public List<ElementClassify> GetElementClassifyByRID(string RID)
+        public List<ElementClassify> GetAllElementClassifyByRID(string RID)
         {
             ElementClassifyDAL elementClassifyDAL = new ElementClassifyDAL();
-            return elementClassifyDAL.GetElementClassifyByRID(RID);
+            return elementClassifyDAL.GetAllElementClassifyByRID(RID);
         }
 
         /// <summary>

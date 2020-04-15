@@ -63,25 +63,6 @@ namespace REMDAL
         }
 
         /// <summary>
-        /// 根据资源ID获取资源类型
-        /// </summary>
-        /// <param name="RID"></param>
-        /// <returns></returns>
-        public List<Resource> GetTypeByRID(string RID)
-        {
-            string sql = @"select 类型 Type from 资源目录 where 资源ID = :RID";
-            OracleDataAccess oracleDataAccess = new OracleDataAccess(SiteConfig.OracleConn);
-            OracleParameter[] oracleParameters =
-           {
-                new OracleParameter(":RID",OracleDbType.Varchar2,RID,ParameterDirection.Input)
-            };
-            DataTable dataTable = oracleDataAccess.ExecuteDataTable(sql, System.Data.CommandType.Text, oracleParameters);
-            List<Resource> resourcesType = ModelConvert.DataTableToIList<Resource>(dataTable).ToList();
-            return resourcesType;
-        }
-
-
-        /// <summary>
         /// 新增资源目录
         /// </summary>
         /// <param name="resource">资源目录对象</param>

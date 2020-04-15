@@ -68,9 +68,9 @@ namespace REMDAL
         }
 
         /// <summary>
-        /// 新增资源目录
+        /// 新增统计指标
         /// </summary>
-        /// <param name="CountNorm">资源目录对象</param>
+        /// <param name="CountNorm">统计指标</param>
         /// <param name="dt">最后修改时间</param>
         /// <param name="nid">新GUID</param>
         public void CreateCountNorm(CountNorm countNorm, DateTime dt, string nid)
