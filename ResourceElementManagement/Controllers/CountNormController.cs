@@ -41,22 +41,20 @@ namespace ResourceElementManagement.Controllers
         /// </summary>
         /// <param name="CountNorm">统计指标定义JSON对象</param>
         [HttpPost]
-        public string CreateCountNorm([FromBody]CountNorm countNorm)
+        public void CreateCountNorm([FromBody]CountNorm countNorm)
         {
             CountNormBLL countNormBLL = new CountNormBLL();
             countNormBLL.CreateCountNorm(countNorm);
-            return "ok";
         }
         /// <summary>
         /// 修改统计指标定义
         /// </summary>
         /// <param name="CountNorm">统计指标JSON对象</param>
         [HttpPut]
-        public string PutCountNormByID([FromBody]CountNorm countNorm)
+        public void PutCountNormByID([FromBody]CountNorm countNorm)
         {
             CountNormBLL countNormBLL = new CountNormBLL();
             countNormBLL.PutCountNormByID(countNorm);
-            return "ok";
         }
 
         /// <summary>
@@ -64,12 +62,10 @@ namespace ResourceElementManagement.Controllers
         /// </summary>
         /// <param name="countNormID">统计指标ID</param>
         [HttpDelete]
-        public string DeleteCountNormByID(string countNormID)
+        public void DeleteCountNormByID(string countNormID)
         {
             CountNormBLL countNormBLL = new CountNormBLL();
             countNormBLL.DeleteCountNormByID(countNormID);
-            return "ok";
         }
-        
     }
 }
