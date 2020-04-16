@@ -19,6 +19,18 @@ namespace REMBLL
             ElementDAL elementDAL = new ElementDAL();
             return elementDAL.GetAllElementByResourceID(RID);
         }
+
+        /// <summary>
+        /// 根据要素ID获取要素目录
+        /// </summary>
+        /// <param name="EID">要素ID</param>
+        /// <returns></returns>
+        public List<Element> GetAllElementByEID(string EID)
+        {
+            ElementDAL elementDAL = new ElementDAL();
+            return elementDAL.GetAllElementByEID(EID);
+        }
+
         /// <summary>
         /// 要素目录新增
         /// </summary>

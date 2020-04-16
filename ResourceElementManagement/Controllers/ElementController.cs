@@ -23,6 +23,18 @@ namespace ResourceElementManagement.Controllers
             ElementBLL elementBLL = new ElementBLL();
             return elementBLL.GetAllElementByResourceID(RID);
         }
+
+        /// <summary>
+        /// 根据要素ID获取要素目录
+        /// </summary>
+        /// <param name="RID">要素ID</param>
+        /// <returns></returns>
+        [HttpPost]
+        public List<Element> GetAllElementByEID(string EID)
+        {
+            ElementBLL elementBLL = new ElementBLL();
+            return elementBLL.GetAllElementByEID(EID);
+        }
         /// <summary>
         /// 新增资源目录
         /// </summary>
