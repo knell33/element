@@ -21,9 +21,19 @@ namespace REMBLL
         }
 
         /// <summary>
+        /// 获取角色信息
+        /// </summary>
+        /// <returns></returns>
+        public List<MainAuthority> GetAllRoleInfo()
+        {
+            MainAuthorityDAL mainAuthorityDAL = new MainAuthorityDAL();
+            return mainAuthorityDAL.GetAllRoleInfo();
+        }
+
+        /// <summary>
         /// 新增主体权限
         /// </summary>
-        /// <param name="MainAuthority">主体权限对象</param>
+        /// <param name="mainAuthority">主体权限对象</param>
         /// <param name="dt">最后修改时间</param>
         /// <param name="nid">新GUID</param>
         public void CreateMainAuthority(MainAuthority mainAuthority)
