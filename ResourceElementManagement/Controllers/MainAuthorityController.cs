@@ -20,18 +20,30 @@ namespace MainAuthorityMainAuthorityManagement.Controllers
         [HttpPost]
         public List<MainAuthority> GetAllMainAuthorityByDetailID(string DID)
         {
-            MainAuthorityBLL MainAuthorityBLL = new MainAuthorityBLL();
-            return MainAuthorityBLL.GetAllMainAuthorityByDetailID(DID);
+            MainAuthorityBLL mainAuthorityBLL = new MainAuthorityBLL();
+            return mainAuthorityBLL.GetAllMainAuthorityByDetailID(DID);
         }
+        /// <summary>
+        /// 获取角色信息
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        public List<MainAuthority> GetAllRoleInfo()
+        {
+            MainAuthorityBLL mainAuthorityBLL = new MainAuthorityBLL();
+            return mainAuthorityBLL.GetAllRoleInfo();
+        }
+
         /// <summary>
         /// 新增主体权限
         /// </summary>
         /// <param name="MainAuthority">主体权限对象</param>
         [HttpPost]
-        public void CreateMainAuthority([FromBody]MainAuthority mainAuthority)
+        public string CreateMainAuthority([FromBody]MainAuthority mainAuthority)
         {
             MainAuthorityBLL mainAuthorityBLL = new MainAuthorityBLL();
             mainAuthorityBLL.CreateMainAuthority(mainAuthority);
+            return "ok";
         }
 
         /// <summary>
@@ -39,10 +51,11 @@ namespace MainAuthorityMainAuthorityManagement.Controllers
         /// </summary>
         /// <param name="MainAuthority">主体权限对象</param>
         [HttpPut]
-        public void PutMainAuthorityByAID([FromBody]MainAuthority mainAuthority)
+        public string PutMainAuthorityByAID([FromBody]MainAuthority mainAuthority)
         {
             MainAuthorityBLL mainAuthorityBLL = new MainAuthorityBLL();
             mainAuthorityBLL.PutMainAuthorityByAID(mainAuthority);
+            return "ok";
         }
 
         /// <summary>
@@ -50,10 +63,11 @@ namespace MainAuthorityMainAuthorityManagement.Controllers
         /// </summary>
         /// <param name="AID">主体权限ID</param>
         [HttpDelete]
-        public void DeleteMainAuthorityByAID(string AID)
+        public string DeleteMainAuthorityByAID(string AID)
         {
             MainAuthorityBLL mainAuthorityBLL = new MainAuthorityBLL();
             mainAuthorityBLL.DeleteMainAuthorityByAID(AID);
+            return "ok";
         }
 
     }

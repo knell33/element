@@ -23,8 +23,6 @@ namespace REMDAL
                                     a.角色名称 RoleName ,              
                                     a.主体id MID ,
                                     a.主体名称 MainName ,
-
-
                                     a.类型 Type ,
                                     a.权限类型 AuthorityType ,
                                     a.关联资源ID RID ,
@@ -50,8 +48,22 @@ namespace REMDAL
             OracleDataAccess oracleDataAccess = new OracleDataAccess(SiteConfig.OracleConn);
 
             DataTable dataTable = oracleDataAccess.ExecuteDataTable(sql, System.Data.CommandType.Text, null);
-            List<MainAuthority> MainAuthoritys = ModelConvert.DataTableToIList<MainAuthority>(dataTable).ToList();
-            return MainAuthoritys;
+            List<MainAuthority> mainAuthority = ModelConvert.DataTableToIList<MainAuthority>(dataTable).ToList();
+            return mainAuthority;
+        }
+
+        /// <summary>
+        /// 获取角色信息
+        /// </summary>
+        /// <returns></returns>
+        public List<MainAuthority> GetAllRoleInfo()
+        {
+            string sql = @"Select a.角色ID RoleID,a.角色名称 RoleName
+                            From 角色信息 a";
+            OracleDataAccess oracleDataAccess = new OracleDataAccess(SiteConfig.OracleConn);
+            DataTable dataTable = oracleDataAccess.ExecuteDataTable(sql, System.Data.CommandType.Text, null);
+            List<MainAuthority> mainAuthority = ModelConvert.DataTableToIList<MainAuthority>(dataTable).ToList();
+            return mainAuthority;
         }
 
         /// <summary>
@@ -76,14 +88,14 @@ namespace REMDAL
             OracleParameter[] oracleParameters =
             {
                     new OracleParameter(":主体权限ID",OracleDbType.Varchar2,nid,ParameterDirection.Input),
-                    new OracleParameter(":主体名称",OracleDbType.Varchar2,mainAuthority.MainName==null?"":mainAuthority.MainName,ParameterDirection.Input),       
-                    new OracleParameter(":类型",OracleDbType.Varchar2,mainAuthority.Type,ParameterDirection.Input),
+                    new OracleParameter(":主体名称",OracleDbType.Varchar2,mainAuthority.MainName==null?"":mainAuthority.MainName,ParameterDirection.Input),
+                    new OracleParameter(":类型",OracleDbType.Varchar2,mainAuthority.Type==null?"":mainAuthority.Type,ParameterDirection.Input),
                     new OracleParameter(":角色ID",OracleDbType.Varchar2, mainAuthority.RoleID==null?"":mainAuthority.RoleID,ParameterDirection.Input),
                     new OracleParameter(":权限类型",OracleDbType.Varchar2, mainAuthority.AuthorityType==null?"":mainAuthority.AuthorityType,ParameterDirection.Input),
                     new OracleParameter(":最后修改人",OracleDbType.Varchar2, mainAuthority.LastModify==null?"":mainAuthority.LastModify,ParameterDirection.Input),
                     new OracleParameter(":最后修改时间",OracleDbType.Date,dt,ParameterDirection.Input),
-                    new OracleParameter(":关联资源ID",OracleDbType.Varchar2, mainAuthority.RID==null?"":mainAuthority.LastModify,ParameterDirection.Input),
-                    new OracleParameter(":关联资源明细ID",OracleDbType.Varchar2, mainAuthority.DID==null?"":mainAuthority.LastModify,ParameterDirection.Input),
+                    new OracleParameter(":关联资源ID",OracleDbType.Varchar2, mainAuthority.RID==null?"":mainAuthority.RID,ParameterDirection.Input),
+                    new OracleParameter(":关联资源明细ID",OracleDbType.Varchar2, mainAuthority.DID==null?"":mainAuthority.DID,ParameterDirection.Input)
              };
             oracleDataAccess.ExecuteNonQuery(sql, System.Data.CommandType.Text, oracleParameters);
         }
@@ -93,7 +105,7 @@ namespace REMDAL
         /// </summary>
         /// <param name="MainAuthority">主体权限对象</param>
         /// <param name="dt">最后修改时间</param>
-        public void PutMainAuthorityByAID(MainAuthority MainAuthority, DateTime dt)
+        public void PutMainAuthorityByAID(MainAuthority mainAuthority, DateTime dt)
         {
             OracleDataAccess oracleDataAccess = new OracleDataAccess(SiteConfig.OracleConn);
             string sql = @"update 主体权限
@@ -107,13 +119,13 @@ namespace REMDAL
             OracleParameter[] oracleParameters =
             {
 
-                    new OracleParameter(":主体名称",OracleDbType.Varchar2,MainAuthority.MainName==null?"":MainAuthority.MainName,ParameterDirection.Input),
-                    new OracleParameter(":类型",OracleDbType.Varchar2,MainAuthority.Type,ParameterDirection.Input),
-                    new OracleParameter(":角色ID",OracleDbType.Varchar2,MainAuthority.RoleID,ParameterDirection.Input),
-                    new OracleParameter(":权限类型",OracleDbType.Varchar2, MainAuthority.AuthorityType==null?"":MainAuthority.AuthorityType,ParameterDirection.Input),
-                    new OracleParameter(":最后修改人",OracleDbType.Varchar2, MainAuthority.LastModify==null?"":MainAuthority.LastModify,ParameterDirection.Input),
+                    new OracleParameter(":主体名称",OracleDbType.Varchar2,mainAuthority.MainName==null?"":mainAuthority.MainName,ParameterDirection.Input),
+                    new OracleParameter(":类型",OracleDbType.Varchar2,mainAuthority.Type,ParameterDirection.Input),
+                    new OracleParameter(":角色ID",OracleDbType.Varchar2,mainAuthority.RoleID,ParameterDirection.Input),
+                    new OracleParameter(":权限类型",OracleDbType.Varchar2, mainAuthority.AuthorityType==null?"":mainAuthority.AuthorityType,ParameterDirection.Input),
+                    new OracleParameter(":最后修改人",OracleDbType.Varchar2, mainAuthority.LastModify==null?"":mainAuthority.LastModify,ParameterDirection.Input),
                     new OracleParameter(":最后修改时间",OracleDbType.Date,dt,ParameterDirection.Input),
-                    new OracleParameter(":主体权限ID",OracleDbType.Varchar2,MainAuthority.AID,ParameterDirection.Input),
+                    new OracleParameter(":主体权限ID",OracleDbType.Varchar2,mainAuthority.AID,ParameterDirection.Input),
 
              };
             oracleDataAccess.ExecuteNonQuery(sql, System.Data.CommandType.Text, oracleParameters);
