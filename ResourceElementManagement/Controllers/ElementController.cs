@@ -40,7 +40,7 @@ namespace ResourceElementManagement.Controllers
         /// </summary>
         /// <param name="element"></param>
         [HttpPost]
-        public string CreateElement([FromBody]Element element)
+        public string CreateElement(Element element)
         {
             ElementBLL elementBLL = new ElementBLL();
             elementBLL.CreateElement(element);

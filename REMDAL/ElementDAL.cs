@@ -73,7 +73,7 @@ namespace REMDAL
         }
 
         /// <summary>
-        /// 获取 要素目录/资源目录/资源分类/统计指标定义/计算要素条件/通用编码目录/要素值域 联合查询
+        /// 获取 根据要素ID获取要素信息
         /// </summary>
         /// <param name="EID"></param>
         /// <returns></returns>
@@ -173,8 +173,11 @@ namespace REMDAL
                 new OracleParameter("v_是否展示主目录",OracleDbType.Int32,element.IFZSZML,ParameterDirection.Input),
                 new OracleParameter("v_名称是否展示",OracleDbType.Int32,element.IFZSMC,ParameterDirection.Input),
                 new OracleParameter("v_编码目录id",OracleDbType.Varchar2,element.CDID,ParameterDirection.Input),
-                new OracleParameter("v_要素分类",OracleDbType.Varchar2,element.ElementClassify==null?"":element.ElementClassify,ParameterDirection.Input)
-
+                new OracleParameter("v_要素分类",OracleDbType.Varchar2,element.ElementClassify==null?"":element.ElementClassify,ParameterDirection.Input),
+                new OracleParameter("v_资源名称",OracleDbType.Varchar2,"-",ParameterDirection.Input),
+                new OracleParameter("v_分类名称",OracleDbType.Varchar2,"-",ParameterDirection.Input),
+                new OracleParameter("v_定义指标个数",OracleDbType.Int32,0,ParameterDirection.Input),
+                new OracleParameter("v_资源名称",OracleDbType.Varchar2,"-",ParameterDirection.Input)
             };
             oracleDataAccess.ExecuteProcdure(sql, oracleParameters);
         }
@@ -209,7 +212,7 @@ namespace REMDAL
                 new OracleParameter("v_是否展示主目录",OracleDbType.Int32,element.IFZSZML,ParameterDirection.Input),
                 new OracleParameter("v_名称是否展示",OracleDbType.Int32,element.IFZSMC,ParameterDirection.Input),
                 new OracleParameter("v_编码目录id",OracleDbType.Varchar2,element.CDID,ParameterDirection.Input),
-                new OracleParameter("v_要素分类",OracleDbType.Varchar2,element.ElementClassify,ParameterDirection.Input)
+                new OracleParameter("v_要素分类",OracleDbType.Varchar2,element.ElementClassify==null?"":element.ElementClassify,ParameterDirection.Input)
 
             };
             oracleDataAccess.ExecuteProcdure(sql, oracleParameters);
