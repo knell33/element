@@ -147,6 +147,34 @@ namespace REMDAL
             oracleDataAccess.ExecuteNonQuery(sql, System.Data.CommandType.Text, oracleParameters);
         }
 
+        /// <summary>
+        /// 根据角色ID获取主体权限
+        /// </summary>
+        /// <param name="RID"></param>
+        /// <returns></returns>
+        public List<MainAuthority> GetAllMainAuthoritiesByRID(string RID)
+        {
+            string sql = @"select a.主体权限id AID ,
+                                    a.角色id RoleID ,         
+                                    a.主体id MID ,
+                                    a.主体名称 MainName ,
+                                    a.类型 Type ,
+                                    a.权限类型 AuthorityType ,
+                                    a.关联资源ID RID ,
+                                    a.关联资源明细ID DID ,
+                                    a.最后修改人 LastModify ,
+                                    a.最后修改时间 LastDate 
+                                    from 主体权限 a
+                                    where a.角色ID = :RID";
+            OracleDataAccess oracleDataAccess = new OracleDataAccess(SiteConfig.OracleConn);
+            OracleParameter[] oracleParameters =
+            {
+                new OracleParameter(":RID",OracleDbType.Varchar2,RID,ParameterDirection.Input)
+            };
+            DataTable dataTable = oracleDataAccess.ExecuteDataTable(sql, System.Data.CommandType.Text, oracleParameters);
+            List<MainAuthority> mainAuthorities = ModelConvert.DataTableToIList<MainAuthority>(dataTable).ToList();
+            return mainAuthorities;
+        }
 
     }
 }

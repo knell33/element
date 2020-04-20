@@ -73,7 +73,7 @@ namespace REMDAL
         }
 
         /// <summary>
-        /// 获取 根据要素ID获取要素信息
+        /// 根据要素ID获取要素信息
         /// </summary>
         /// <param name="EID"></param>
         /// <returns></returns>
@@ -135,7 +135,6 @@ namespace REMDAL
             sql = string.Format(sql, EID);
             //数据库连接
             OracleDataAccess oracleDataAccess = new OracleDataAccess(SiteConfig.OracleConn);
-
             DataTable dataTable = oracleDataAccess.ExecuteDataTable(sql, System.Data.CommandType.Text, null);
             List<Element> elements = ModelConvert.DataTableToIList<Element>(dataTable).ToList();
             return elements;

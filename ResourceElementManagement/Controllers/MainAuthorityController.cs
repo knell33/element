@@ -70,5 +70,17 @@ namespace MainAuthorityMainAuthorityManagement.Controllers
             return "ok";
         }
 
+        /// <summary>
+        /// 根据角色ID获取主体权限
+        /// </summary>
+        /// <param name="RID">角色ID</param>
+        /// <returns></returns>
+        [HttpPost]
+        public List<MainAuthority> GetAllMainAuthoritiesByRID(string RID)
+        {
+            MainAuthorityBLL mainAuthorityBLL = new MainAuthorityBLL();
+            return mainAuthorityBLL.GetAllMainAuthoritiesByRID(RID);
+        }
+
     }
 }

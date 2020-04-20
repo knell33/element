@@ -69,5 +69,16 @@ namespace REMBLL
             mainAuthorityDAL.DeleteMainAuthorityByAID(AID);
         }
 
+        /// <summary>
+        /// 根据角色ID获取主体权限
+        /// </summary>
+        /// <param name="RID">角色ID</param>
+        /// <returns></returns>
+        public List<MainAuthority> GetAllMainAuthoritiesByRID(string RID)
+        {
+            MainAuthorityDAL mainAuthorityDAL = new MainAuthorityDAL();
+            return mainAuthorityDAL.GetAllMainAuthoritiesByRID(RID);
+        }
+
     }
 }
