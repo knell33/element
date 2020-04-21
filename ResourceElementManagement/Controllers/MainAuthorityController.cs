@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using REMBLL;
 using REMModel;
 
@@ -87,6 +88,7 @@ namespace MainAuthorityMainAuthorityManagement.Controllers
         /// </summary>
         /// <param name="maJson">窗体权限字符串</param>
         /// <returns></returns>
+        [HttpPost]
         public string CreateMainAuthorities(string maJson)
         {
             MainAuthorityBLL mainAuthorityBLL = new MainAuthorityBLL();

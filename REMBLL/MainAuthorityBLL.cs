@@ -1,4 +1,6 @@
-﻿using Nancy.Json;
+﻿using Nancy;
+using Nancy.Json;
+using Newtonsoft.Json;
 using REMCommon;
 using REMDAL;
 using REMModel;
@@ -91,17 +93,11 @@ namespace REMBLL
             DateTime dt = NewData.NewDate();
             //获取新的GUID
             string uid = NewData.NewGuid();
-            JavaScriptSerializer js = new JavaScriptSerializer(); //实例化一个能够序列化数据的类
-            //将maJson数据转化为对象类型
-            //MainAuthority mainAuthority = js.Deserialize<MainAuthority>(maJson);
-            //第二种转换
-            //List<MainAuthority> mainAuthorities = Newtonsoft.Json.JsonConvert.DeserializeObject<List<MainAuthority>>(maJson);
-            //将maJson数据转化为对象类型集合
-            List<MainAuthority> mainAuthorities = js.Deserialize<List<MainAuthority>>(maJson);
+            var malist = JsonConvert.DeserializeObject<List<MainAuthority>>(maJson);
             MainAuthorityDAL mainAuthorityDAL = new MainAuthorityDAL();
-            for(int i=0;i<mainAuthorities.Count;i++)
+            for (int i = 0; i < malist.Count; i++)
             {
-                mainAuthorityDAL.CreateMainAuthorities(mainAuthorities[i], dt, uid);
+                mainAuthorityDAL.CreateMainAuthorities(malist[i], dt, uid);
             }
         } 
 
