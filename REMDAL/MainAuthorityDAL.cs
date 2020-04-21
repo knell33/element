@@ -176,5 +176,28 @@ namespace REMDAL
             return mainAuthorities;
         }
 
+        /// <summary>
+        /// 角色权限管理页面新增主体权限
+        /// </summary>
+        /// <param name="mainAuthority">主体权限实体类</param>
+        /// <param name="dt">最后修改时间</param>
+        /// <param name="uid">主体权限ID</param>
+        public void CreateMainAuthorities(MainAuthority mainAuthority, DateTime dt, string uid)
+        {
+            string sql = "p_主体权限_core";
+            OracleDataAccess oracleDataAccess = new OracleDataAccess(SiteConfig.OracleConn);
+            OracleParameter[] oracleParameters =
+            {
+                new OracleParameter("主体权限id_In",OracleDbType.Varchar2,uid,ParameterDirection.Input),
+                new OracleParameter("角色id_In",OracleDbType.Varchar2,mainAuthority.RoleID,ParameterDirection.Input),
+                new OracleParameter("主体id_In",OracleDbType.Varchar2,mainAuthority.MID,ParameterDirection.Input),
+                new OracleParameter("主体名称_In",OracleDbType.Varchar2,mainAuthority.MainName,ParameterDirection.Input),
+                new OracleParameter("权限类型_In",OracleDbType.Varchar2,mainAuthority.AuthorityType,ParameterDirection.Input),
+                new OracleParameter("最后修改人_In",OracleDbType.Varchar2,mainAuthority.LastModify,ParameterDirection.Input),
+                new OracleParameter("最后修改时间_In",OracleDbType.Varchar2,dt,ParameterDirection.Input)
+            };
+            oracleDataAccess.ExecuteProcdure(sql, oracleParameters);
+        }
+
     }
 }

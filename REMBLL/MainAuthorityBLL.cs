@@ -1,4 +1,5 @@
-﻿using REMCommon;
+﻿using Nancy.Json;
+using REMCommon;
 using REMDAL;
 using REMModel;
 using System;
@@ -38,7 +39,7 @@ namespace REMBLL
         /// <param name="nid">新GUID</param>
         public void CreateMainAuthority(MainAuthority mainAuthority)
         {
-            ///获取当前时间
+            //获取当前时间
             DateTime dt = NewData.NewDate();
             //获取新的GUID
             string nid = NewData.NewGuid();
@@ -79,6 +80,30 @@ namespace REMBLL
             MainAuthorityDAL mainAuthorityDAL = new MainAuthorityDAL();
             return mainAuthorityDAL.GetAllMainAuthoritiesByRID(RID);
         }
+
+        /// <summary>
+        /// 角色权限管理页面新增主体权限
+        /// </summary>
+        /// <param name="maJson">窗体(主体)权限字符串</param>
+        public void CreateMainAuthoritirs(string maJson)
+        {
+            //获取当前时间
+            DateTime dt = NewData.NewDate();
+            //获取新的GUID
+            string uid = NewData.NewGuid();
+            JavaScriptSerializer js = new JavaScriptSerializer(); //实例化一个能够序列化数据的类
+            //将maJson数据转化为对象类型
+            //MainAuthority mainAuthority = js.Deserialize<MainAuthority>(maJson);
+            //第二种转换
+            //List<MainAuthority> mainAuthorities = Newtonsoft.Json.JsonConvert.DeserializeObject<List<MainAuthority>>(maJson);
+            //将maJson数据转化为对象类型集合
+            List<MainAuthority> mainAuthorities = js.Deserialize<List<MainAuthority>>(maJson);
+            MainAuthorityDAL mainAuthorityDAL = new MainAuthorityDAL();
+            for(int i=0;i<mainAuthorities.Count;i++)
+            {
+                mainAuthorityDAL.CreateMainAuthorities(mainAuthorities[i], dt, uid);
+            }
+        } 
 
     }
 }

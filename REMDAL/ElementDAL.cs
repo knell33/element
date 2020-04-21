@@ -172,11 +172,7 @@ namespace REMDAL
                 new OracleParameter("v_是否展示主目录",OracleDbType.Int32,element.IFZSZML,ParameterDirection.Input),
                 new OracleParameter("v_名称是否展示",OracleDbType.Int32,element.IFZSMC,ParameterDirection.Input),
                 new OracleParameter("v_编码目录id",OracleDbType.Varchar2,element.CDID,ParameterDirection.Input),
-                new OracleParameter("v_要素分类",OracleDbType.Varchar2,element.ElementClassify==null?"":element.ElementClassify,ParameterDirection.Input),
-                new OracleParameter("v_资源名称",OracleDbType.Varchar2,"-",ParameterDirection.Input),
-                new OracleParameter("v_分类名称",OracleDbType.Varchar2,"-",ParameterDirection.Input),
-                new OracleParameter("v_定义指标个数",OracleDbType.Int32,0,ParameterDirection.Input),
-                new OracleParameter("v_资源名称",OracleDbType.Varchar2,"-",ParameterDirection.Input)
+                new OracleParameter("v_要素分类",OracleDbType.Varchar2,element.ElementClassify,ParameterDirection.Input),
             };
             oracleDataAccess.ExecuteProcdure(sql, oracleParameters);
         }

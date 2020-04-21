@@ -15,7 +15,7 @@ namespace MainAuthorityMainAuthorityManagement.Controllers
         /// <summary>
         /// 根据资源明细ID获取主体权限数据
         /// </summary>
-        /// <param name="DID"></param>
+        /// <param name="DID">资源明细ID</param>
         /// <returns></returns>
         [HttpPost]
         public List<MainAuthority> GetAllMainAuthorityByDetailID(string DID)
@@ -80,6 +80,18 @@ namespace MainAuthorityMainAuthorityManagement.Controllers
         {
             MainAuthorityBLL mainAuthorityBLL = new MainAuthorityBLL();
             return mainAuthorityBLL.GetAllMainAuthoritiesByRID(RID);
+        }
+
+        /// <summary>
+        /// 角色权限管理页新增主体权限
+        /// </summary>
+        /// <param name="maJson">窗体权限字符串</param>
+        /// <returns></returns>
+        public string CreateMainAuthorities(string maJson)
+        {
+            MainAuthorityBLL mainAuthorityBLL = new MainAuthorityBLL();
+            mainAuthorityBLL.CreateMainAuthoritirs(maJson);
+            return "OK";
         }
 
     }
