@@ -53,5 +53,20 @@ namespace REMDAL
             };
             oracleDataAccess.ExecuteProcdure(sql, oracleParameters);
         }
+
+        /// <summary>
+        /// 删除角色权限同步人员权限
+        /// </summary>
+        /// <param name="MAID">主体权限ID</param>
+        public void DeletePerPersonnelAuthority(string MAID)
+        {
+            string sql = "delete from 人员权限 where 主体权限ID = :MAID";
+            OracleDataAccess oracleDataAccess = new OracleDataAccess(SiteConfig.OracleConn);
+            OracleParameter[] oracleParameters =
+            {
+                new OracleParameter(":MAID",OracleDbType.Varchar2,MAID,ParameterDirection.Input)
+            };
+            oracleDataAccess.ExecuteProcdure(sql, oracleParameters);
+        }
     }
 }

@@ -69,6 +69,10 @@ namespace REMBLL
         public void DeleteMainAuthorityByAID(string AID)
         {
             MainAuthorityDAL mainAuthorityDAL = new MainAuthorityDAL();
+            PersonnelAuthorityDAL personnelAuthorityDAL = new PersonnelAuthorityDAL();
+            //删除人员权限
+            personnelAuthorityDAL.DeletePerPersonnelAuthority(AID);
+            //删除主体权限
             mainAuthorityDAL.DeleteMainAuthorityByAID(AID);
         }
 

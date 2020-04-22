@@ -28,5 +28,15 @@ namespace REMBLL
             PersonnelAuthorityDAL personnelAuthorityDAL = new PersonnelAuthorityDAL();
             personnelAuthorityDAL.CreatePersonnelAuthority(MAID);
         }
+
+        /// <summary>
+        /// 删除角色权限同步人员权限
+        /// </summary>
+        /// <param name="MAID">主体权限ID</param>
+        public void DeletePerPersonnelAuthority(string MAID)
+        {
+            PersonnelAuthorityDAL personnelAuthorityDAL = new PersonnelAuthorityDAL();
+            personnelAuthorityDAL.DeletePerPersonnelAuthority(MAID);
+        }
     }
 }
