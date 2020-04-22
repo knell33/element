@@ -66,7 +66,7 @@ namespace REMDAL
             {
                 new OracleParameter(":MAID",OracleDbType.Varchar2,MAID,ParameterDirection.Input)
             };
-            oracleDataAccess.ExecuteProcdure(sql, oracleParameters);
+            oracleDataAccess.ExecuteNonQuery(sql, oracleParameters);
         }
     }
 }
