@@ -182,13 +182,13 @@ namespace REMDAL
         /// <param name="mainAuthority">主体权限实体类</param>
         /// <param name="dt">最后修改时间</param>
         /// <param name="uid">主体权限ID</param>
-        public void CreateMainAuthorities(MainAuthority mainAuthority, DateTime dt, string uid)
+        public string CreateMainAuthorities(MainAuthority mainAuthority, DateTime dt)
         {
             string sql = "p_主体权限_core";
             OracleDataAccess oracleDataAccess = new OracleDataAccess(SiteConfig.OracleConn);
             OracleParameter[] oracleParameters =
             {
-                new OracleParameter("主体权限id_In",OracleDbType.Varchar2,uid,ParameterDirection.Input),
+                new OracleParameter("主体权限id_In",OracleDbType.Varchar2,mainAuthority.AID,ParameterDirection.Input),
                 new OracleParameter("角色id_In",OracleDbType.Varchar2,mainAuthority.RoleID,ParameterDirection.Input),
                 new OracleParameter("主体id_In",OracleDbType.Varchar2,mainAuthority.MID,ParameterDirection.Input),
                 new OracleParameter("主体名称_In",OracleDbType.Varchar2,mainAuthority.MainName,ParameterDirection.Input),
@@ -197,7 +197,39 @@ namespace REMDAL
                 new OracleParameter("最后修改时间_In",OracleDbType.Varchar2,dt,ParameterDirection.Input)
             };
             oracleDataAccess.ExecuteProcdure(sql, oracleParameters);
+            return "OK";
         }
 
+        /// <summary>
+        /// 角色权限管理页面其他权限管理新增主体权限
+        /// </summary>
+        /// <param name="mainAuthority"></param>
+        /// <param name="dt">最后修改时间</param>
+        public string CreateMainAuthorityByOthers(MainAuthority mainAuthority, DateTime dt)
+        {
+            string sql = @"insert into 主体权限( 主体权限ID,
+                                                 类型,
+                                                 主体ID,
+                                                 角色ID,
+                                                 权限类型,
+                                                 最后修改人,
+                                                 最后修改时间,
+                                                 主体名称) 
+                                        values(:主体权限ID,:类型,:主体ID,:角色ID,:权限类型,:最后修改人,:最后修改时间,:主体名称)";
+            OracleDataAccess oracleDataAccess = new OracleDataAccess(SiteConfig.OracleConn);
+            OracleParameter[] oracleParameters =
+            {
+                    new OracleParameter(":主体权限ID",OracleDbType.Varchar2,mainAuthority.AID,ParameterDirection.Input),
+                    new OracleParameter(":类型",OracleDbType.Varchar2,mainAuthority.Type,ParameterDirection.Input),
+                    new OracleParameter(":主体ID",OracleDbType.Varchar2,mainAuthority.MID,ParameterDirection.Input),
+                    new OracleParameter(":角色ID",OracleDbType.Varchar2,mainAuthority.RoleID,ParameterDirection.Input),
+                    new OracleParameter(":权限类型",OracleDbType.Varchar2,mainAuthority.AuthorityType,ParameterDirection.Input),
+                    new OracleParameter(":最后修改人",OracleDbType.Varchar2,mainAuthority.LastModify,ParameterDirection.Input),
+                    new OracleParameter(":最后修改时间",OracleDbType.Date,dt,ParameterDirection.Input),
+                    new OracleParameter(":主体名称",OracleDbType.Varchar2,mainAuthority.MainName,ParameterDirection.Input)
+             };
+            oracleDataAccess.ExecuteNonQuery(sql, System.Data.CommandType.Text, oracleParameters);
+            return "OK";
+        }
     }
 }

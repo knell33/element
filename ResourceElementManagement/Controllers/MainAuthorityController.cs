@@ -84,7 +84,7 @@ namespace MainAuthorityMainAuthorityManagement.Controllers
         }
 
         /// <summary>
-        /// 角色权限管理页新增主体权限
+        /// 角色权限管理页新增主体权限 同步人员权限
         /// </summary>
         /// <param name="maJson">窗体权限字符串</param>
         /// <returns></returns>
@@ -96,5 +96,18 @@ namespace MainAuthorityMainAuthorityManagement.Controllers
             return "OK";
         }
 
-    }
+        /// <summary>
+        /// 角色权限管理页面其他权限管理新增主体权限 同步人员权限
+        /// </summary>
+        /// <param name="mainAuthority">主体权限实体</param>
+        /// <param name="dt">最后修改时间</param>
+        [HttpPost]
+        public string CreateMainAuthorityByOthers([FromBody]MainAuthority mainAuthority)
+        {
+            MainAuthorityBLL mainAuthorityBLL = new MainAuthorityBLL();
+            mainAuthorityBLL.CreateMainAuthorityByOthers(mainAuthority);
+            return "OK";
+        }
+
+        }
 }

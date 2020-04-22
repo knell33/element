@@ -38,5 +38,20 @@ namespace REMDAL
             List<PersonnelAuthority> personnelAuthorities = ModelConvert.DataTableToIList<PersonnelAuthority>(dataTable).ToList();
             return personnelAuthorities;
         }
+
+        /// <summary>
+        /// 根据主体权限ID同步人员权限
+        /// </summary>
+        /// <param name="MAID">主体权限ID</param>
+        public void CreatePersonnelAuthority(string MAID)
+        {
+            string sql = "p_人员权限同步_core";
+            OracleDataAccess oracleDataAccess = new OracleDataAccess(SiteConfig.OracleConn);
+            OracleParameter[] oracleParameters =
+            {
+                new OracleParameter("主体权限id_In",OracleDbType.Varchar2,MAID,ParameterDirection.Input) 
+            };
+            oracleDataAccess.ExecuteProcdure(sql, oracleParameters);
+        }
     }
 }

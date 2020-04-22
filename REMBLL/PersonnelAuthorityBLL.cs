@@ -18,5 +18,15 @@ namespace REMBLL
             PersonnelAuthorityDAL personnelAuthorityDAL = new PersonnelAuthorityDAL();
             return personnelAuthorityDAL.GetAllPersonnelAuthorityByUID(UserID);
         }
+
+        /// <summary>
+        /// 根据主体权限ID同步人员权限
+        /// </summary>
+        /// <param name="MAID">主体权限ID</param>
+        public void CreatePersonnelAuthority(string MAID)
+        {
+            PersonnelAuthorityDAL personnelAuthorityDAL = new PersonnelAuthorityDAL();
+            personnelAuthorityDAL.CreatePersonnelAuthority(MAID);
+        }
     }
 }

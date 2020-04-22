@@ -84,22 +84,47 @@ namespace REMBLL
         }
 
         /// <summary>
-        /// 角色权限管理页面新增主体权限
+        /// 角色权限管理页面新增主体权限 同步人员权限
         /// </summary>
         /// <param name="maJson">窗体(主体)权限字符串</param>
         public void CreateMainAuthoritirs(string maJson)
         {
             //获取当前时间
             DateTime dt = NewData.NewDate();
-            //获取新的GUID
-            string uid = NewData.NewGuid();
             var malist = JsonConvert.DeserializeObject<List<MainAuthority>>(maJson);
             MainAuthorityDAL mainAuthorityDAL = new MainAuthorityDAL();
+            PersonnelAuthorityDAL personnelAuthorityDAL = new PersonnelAuthorityDAL();
             for (int i = 0; i < malist.Count; i++)
             {
-                mainAuthorityDAL.CreateMainAuthorities(malist[i], dt, uid);
+                //主体权限新增
+                string ifsuccess = mainAuthorityDAL.CreateMainAuthorities(malist[i], dt);
+                if(ifsuccess == "OK")
+                {
+                    //人员权限同步
+                    personnelAuthorityDAL.CreatePersonnelAuthority(malist[i].AID);
+                }
             }
-        } 
+        }
+
+        /// <summary>
+        /// 角色权限管理页面其他权限管理新增主体权限 同步人员权限
+        /// </summary>
+        /// <param name="mainAuthority">主体权限实体</param>
+        /// <param name="dt">最后修改时间</param>
+        public void CreateMainAuthorityByOthers(MainAuthority mainAuthority)
+        {
+            //获取当前时间
+            DateTime dt = NewData.NewDate();
+            MainAuthorityDAL mainAuthorityDAL = new MainAuthorityDAL();
+            PersonnelAuthorityDAL personnelAuthorityDAL = new PersonnelAuthorityDAL();
+            //主体权限新增
+            string ifsuccess = mainAuthorityDAL.CreateMainAuthorityByOthers(mainAuthority, dt);
+            if(ifsuccess == "OK")
+            {
+                //人员权限同步
+                personnelAuthorityDAL.CreatePersonnelAuthority(mainAuthority.AID);
+            }
+        }
 
     }
 }
