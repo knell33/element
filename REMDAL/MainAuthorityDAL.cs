@@ -58,8 +58,9 @@ namespace REMDAL
         /// <returns></returns>
         public List<MainAuthority> GetAllRoleInfo()
         {
-            string sql = @"Select a.角色ID RoleID,a.角色名称 RoleName
-                            From 角色信息 a";
+            string sql = @"Select distinct a.角色ID RoleID,a.角色名称 RoleName
+                            From 角色信息 a ,角色用户信息 b
+                            Where a.角色ID = b.角色ID";
             OracleDataAccess oracleDataAccess = new OracleDataAccess(SiteConfig.OracleConn);
             DataTable dataTable = oracleDataAccess.ExecuteDataTable(sql, System.Data.CommandType.Text, null);
             List<MainAuthority> mainAuthority = ModelConvert.DataTableToIList<MainAuthority>(dataTable).ToList();
@@ -98,6 +99,7 @@ namespace REMDAL
                     new OracleParameter(":关联资源明细ID",OracleDbType.Varchar2, mainAuthority.DID==null?"":mainAuthority.DID,ParameterDirection.Input)
              };
             oracleDataAccess.ExecuteNonQuery(sql, System.Data.CommandType.Text, oracleParameters);
+
         }
 
         /// <summary>

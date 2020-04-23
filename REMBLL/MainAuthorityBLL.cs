@@ -45,8 +45,12 @@ namespace REMBLL
             DateTime dt = NewData.NewDate();
             //获取新的GUID
             string nid = NewData.NewGuid();
+            //新增主体权限
             MainAuthorityDAL mainAuthorityDAL = new MainAuthorityDAL();
             mainAuthorityDAL.CreateMainAuthority(mainAuthority, dt, nid);
+            //新增人员权限
+            PersonnelAuthorityDAL personnelAuthorityDAL = new PersonnelAuthorityDAL();
+            personnelAuthorityDAL.CreatePersonnelAuthority(nid);
         }
 
         /// <summary>
@@ -58,8 +62,12 @@ namespace REMBLL
         {
             ///获取当前时间
             DateTime dt = NewData.NewDate();
+            //新增主体权限
             MainAuthorityDAL mainAuthorityDAL = new MainAuthorityDAL();
             mainAuthorityDAL.PutMainAuthorityByAID(mainAuthority, dt);
+            //新增人员权限
+            PersonnelAuthorityDAL personnelAuthorityDAL = new PersonnelAuthorityDAL();
+            personnelAuthorityDAL.CreatePersonnelAuthority(mainAuthority.AID);
         }
 
         /// <summary>
