@@ -194,7 +194,7 @@ namespace REMDAL
                 new OracleParameter("主体名称_In",OracleDbType.Varchar2,mainAuthority.MainName,ParameterDirection.Input),
                 new OracleParameter("权限类型_In",OracleDbType.Varchar2,mainAuthority.AuthorityType,ParameterDirection.Input),
                 new OracleParameter("最后修改人_In",OracleDbType.Varchar2,mainAuthority.LastModify,ParameterDirection.Input),
-                new OracleParameter("最后修改时间_In",OracleDbType.Varchar2,dt,ParameterDirection.Input)
+                new OracleParameter("最后修改时间_In",OracleDbType.Date,dt,ParameterDirection.Input)
             };
             oracleDataAccess.ExecuteProcdure(sql, oracleParameters);
             return "OK";
