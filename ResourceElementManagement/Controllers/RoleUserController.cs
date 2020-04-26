@@ -23,5 +23,31 @@ namespace ResourceElementManagement.Controllers
             RoleUserBLL roleUserBLL = new RoleUserBLL();
             return roleUserBLL.GetAllRoleUserByRID(RID);
         }
+
+        /// <summary>
+        /// 新增角色用户 同步人员权限
+        /// </summary>
+        /// <param name="roleUesrJson">角色用户实体字符串</param>
+        /// <returns></returns>
+        [HttpPost]
+        public string CreateRoleUser(string roleUesrJson)
+        {
+            RoleUserBLL roleUserBLL = new RoleUserBLL();
+            roleUserBLL.CreateRoleUser(roleUesrJson);
+            return "OK";
+        }
+
+        /// <summary>
+        /// 删除用户信息 同步人员权限
+        /// </summary>
+        /// <param name="RUID">角色用户ID</param>
+        /// <param name="UserID">用户ID</param>
+        /// <param name="RoleID">角色ID</param>
+        [HttpDelete]
+        public void DeleteMainAuthorityByRUID(string RUID, string UserID, string RoleID)
+        {
+            RoleUserBLL roleUserBLL = new RoleUserBLL();
+            roleUserBLL.DeleteMainAuthorityByRUID(RUID, UserID, RoleID);
+        }
     }
 }

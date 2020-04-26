@@ -233,5 +233,24 @@ namespace REMDAL
             oracleDataAccess.ExecuteNonQuery(sql, System.Data.CommandType.Text, oracleParameters);
             return "OK";
         }
+
+        /// <summary>
+        /// 根据角色ID获取主体权限ID
+        /// </summary>
+        /// <param name="RoleID">角色ID</param>
+        /// <returns></returns>
+        public List<MainAuthority> GetAllAIDByRoleID(string RoleID)
+        {
+            string sql = @"select 主体权限ID AID from 主体权限 where 角色ID = :RoleID";
+            OracleDataAccess oracleDataAccess = new OracleDataAccess(SiteConfig.OracleConn);
+            OracleParameter[] oracleParameters =
+            {
+                    new OracleParameter(":RoleID",OracleDbType.Varchar2,RoleID,ParameterDirection.Input),
+
+             };
+            DataTable dataTable = oracleDataAccess.ExecuteDataTable(sql, System.Data.CommandType.Text, oracleParameters);
+            List<MainAuthority> mainAuthority = ModelConvert.DataTableToIList<MainAuthority>(dataTable).ToList();
+            return mainAuthority;
+        }
     }
 }

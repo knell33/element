@@ -68,5 +68,22 @@ namespace REMDAL
             };
             oracleDataAccess.ExecuteNonQuery(sql, oracleParameters);
         }
+
+        /// <summary>
+        /// 删除角色用户同步人员权限
+        /// </summary>
+        /// <param name="UserID">用户ID</param>
+        /// <param name="RoleID">角色ID</param>
+        public void DeletePA(string UserID, string RoleID)
+        {
+            string sql = "delete from 人员权限 where 用户ID = :UserID and 角色ID = :RoleID";
+            OracleDataAccess oracleDataAccess = new OracleDataAccess(SiteConfig.OracleConn);
+            OracleParameter[] oracleParameters =
+            {
+                new OracleParameter(":UserID",OracleDbType.Varchar2,UserID,ParameterDirection.Input),
+                new OracleParameter(":RoleID",OracleDbType.Varchar2,RoleID,ParameterDirection.Input)
+            };
+            oracleDataAccess.ExecuteNonQuery(sql, oracleParameters);
+        }
     }
 }
