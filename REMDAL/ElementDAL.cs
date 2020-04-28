@@ -154,7 +154,7 @@ namespace REMDAL
             OracleParameter[] oracleParameters =
             {
                 new OracleParameter("v_要素ID",OracleDbType.Varchar2,uid,ParameterDirection.Input),
-                new OracleParameter("v_资源ID",OracleDbType.Varchar2,element.RID==null?"":element.RID,ParameterDirection.Input),
+                new OracleParameter("v_资源ID",OracleDbType.Varchar2,element.RID,ParameterDirection.Input),
                 new OracleParameter("v_要素名称",OracleDbType.Varchar2,element.Name,ParameterDirection.Input),
                 new OracleParameter("v_要素类型",OracleDbType.Varchar2,element.Type,ParameterDirection.Input),
                 new OracleParameter("v_单位",OracleDbType.Varchar2,element.Unit,ParameterDirection.Input),
@@ -207,7 +207,7 @@ namespace REMDAL
                 new OracleParameter("v_是否展示主目录",OracleDbType.Int32,element.IFZSZML,ParameterDirection.Input),
                 new OracleParameter("v_名称是否展示",OracleDbType.Int32,element.IFZSMC,ParameterDirection.Input),
                 new OracleParameter("v_编码目录id",OracleDbType.Varchar2,element.CDID,ParameterDirection.Input),
-                new OracleParameter("v_要素分类",OracleDbType.Varchar2,element.ElementClassify==null?"":element.ElementClassify,ParameterDirection.Input)
+                new OracleParameter("v_要素分类",OracleDbType.Varchar2,element.ElementClassify,ParameterDirection.Input)
 
             };
             oracleDataAccess.ExecuteProcdure(sql, oracleParameters);
