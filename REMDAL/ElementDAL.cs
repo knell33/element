@@ -62,7 +62,8 @@ namespace REMDAL
                                     a.要素分类,
                                     b.资源名称,                                
                                     c.分类名称,                                                       
-                                    e.表达式文本";
+                                    e.表达式文本
+                                    order by a.序号";
             sql = string.Format(sql, RID);
             //数据库连接
             OracleDataAccess oracleDataAccess = new OracleDataAccess(SiteConfig.OracleConn);
