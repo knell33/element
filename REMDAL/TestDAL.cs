@@ -18,7 +18,7 @@ namespace REMDAL
             OracleParameter[] oracleParameters =
             {
                 new OracleParameter("Type_in",OracleDbType.Varchar2,type,ParameterDirection.Input),
-                new OracleParameter("Numbera_out",OracleDbType.Varchar2,"",ParameterDirection.Output)
+                new OracleParameter("Numbera_out",OracleDbType.RefCursor,"",ParameterDirection.Output)
             };
             /*object numbera =  oracleDataAccess.ExecuteProcdure(sql, oracleParameters);
             return numbera;*/

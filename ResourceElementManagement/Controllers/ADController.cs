@@ -26,5 +26,20 @@ namespace ResourceElementManagement.Controllers
             sw.Start();
             return directory;
         }
+
+
+        /// <summary>
+        /// 获取中联用户信息1
+        /// </summary>
+        [HttpPost]
+        public object GetZLAllUser1()
+        {
+            // ADHelper aDHelper = new ADHelper();
+            DirectoryEntry directoryEntry1 = ADHelper.GetDirectoryEntry();
+            object directory = ADUtil.getZLAllUser1();
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            return directory;
+        }
     }
 }

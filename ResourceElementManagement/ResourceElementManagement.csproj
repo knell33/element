@@ -7,7 +7,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <OutputPath>bin\Debug\netcoreapp3.1\</OutputPath>
     <DocumentationFile>bin\Debug\netcoreapp3.1\ResourceElementManagement.xml</DocumentationFile>
-    <WarningLevel>2</WarningLevel>
+    <WarningLevel>3</WarningLevel>
     <NoWarn>1701;1702;1591;1572</NoWarn>
   </PropertyGroup>
 

@@ -25,5 +25,7 @@ namespace REMModel
         /// 邮箱
         /// </summary>
         public string Email { get; set; }
+        public string ParentOU { get; set; }
+        public List<Users> children { get; set; }
     }
 }

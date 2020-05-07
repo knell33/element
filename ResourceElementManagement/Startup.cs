@@ -41,7 +41,7 @@ namespace ResourceElementManagement
                 options.AddPolicy("CustomCorsPolicy", policy =>
                 {
                     // 设定允许跨域的来源，有多个可以用','隔开
-                    policy.WithOrigins("http://localhost:8081","http://localhost:8080")
+                    policy.WithOrigins("http://localhost:8081","http://localhost:8080", "http://192.168.31.119:8080")
                     .AllowAnyHeader()
                     .AllowAnyMethod()
                     .AllowCredentials();
