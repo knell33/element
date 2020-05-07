@@ -25,7 +25,7 @@ namespace ResourceElementManagement.Controllers
         }
 
         /// <summary>
-        /// 根据获取统计指标定义
+        /// 根据指标定义ID获取统计指标定义
         /// </summary>
         /// <param name="ID">指标定义ID</param>
         /// <returns></returns>

@@ -77,6 +77,7 @@ namespace REMDAL
         {
             OracleDataAccess oracleDataAccess = new OracleDataAccess(SiteConfig.OracleConn);
             string sql = @"insert into 主体权限( 主体权限ID,
+                                                 主体ID,
                                                  主体名称,
                                                  类型,
                                                  角色ID,
@@ -85,10 +86,11 @@ namespace REMDAL
                                                  最后修改时间,
                                                  关联资源ID,                                                 
                                                 关联资源明细ID) 
-                                        values(:主体权限ID,:主体名称,:类型,:角色ID,:权限类型,:最后修改人,:最后修改时间,:关联资源ID,:关联资源明细ID)";
+                                        values(:主体权限ID,:主体ID,:主体名称,:类型,:角色ID,:权限类型,:最后修改人,:最后修改时间,:关联资源ID,:关联资源明细ID)";
             OracleParameter[] oracleParameters =
             {
                     new OracleParameter(":主体权限ID",OracleDbType.Varchar2,nid,ParameterDirection.Input),
+                    new OracleParameter(":主体ID",OracleDbType.Varchar2,mainAuthority.MID==null?"":mainAuthority.MID,ParameterDirection.Input),
                     new OracleParameter(":主体名称",OracleDbType.Varchar2,mainAuthority.MainName==null?"":mainAuthority.MainName,ParameterDirection.Input),
                     new OracleParameter(":类型",OracleDbType.Varchar2,mainAuthority.Type==null?"":mainAuthority.Type,ParameterDirection.Input),
                     new OracleParameter(":角色ID",OracleDbType.Varchar2, mainAuthority.RoleID==null?"":mainAuthority.RoleID,ParameterDirection.Input),
@@ -111,7 +113,8 @@ namespace REMDAL
         {
             OracleDataAccess oracleDataAccess = new OracleDataAccess(SiteConfig.OracleConn);
             string sql = @"update 主体权限
-                            set 主体名称=:主体名称,
+                            set 主体ID = :主体ID,                                
+                                主体名称=:主体名称,
                                 类型= :类型,
                                 角色ID=:角色ID,
                                 权限类型=:权限类型,
@@ -120,7 +123,7 @@ namespace REMDAL
                             where 主体权限ID=:主体权限ID";
             OracleParameter[] oracleParameters =
             {
-
+                    new OracleParameter(":主体ID",OracleDbType.Varchar2,mainAuthority.MID==null?"":mainAuthority.MID,ParameterDirection.Input),
                     new OracleParameter(":主体名称",OracleDbType.Varchar2,mainAuthority.MainName==null?"":mainAuthority.MainName,ParameterDirection.Input),
                     new OracleParameter(":类型",OracleDbType.Varchar2,mainAuthority.Type,ParameterDirection.Input),
                     new OracleParameter(":角色ID",OracleDbType.Varchar2,mainAuthority.RoleID,ParameterDirection.Input),

@@ -128,7 +128,7 @@ namespace REMModel
         /// <summary>
         /// 定义指标个数
         /// </summary>
-        public int DYZBGS { get; set; }
+        public decimal DYZBGS { get; set; }
 
         /// <summary>
         /// 表达式文本
